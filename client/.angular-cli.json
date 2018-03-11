@@ -15,7 +15,7 @@
             "tsconfig": "tsconfig.app.json",
             "testTsconfig": "tsconfig.spec.json",
             "prefix": "app",
-            "styles": ["styles.less"],
+            "styles": ["../node_modules/bootstrap/dist/css/bootstrap.min.css", "styles.scss"],
             "scripts": [],
             "environmentSource": "environments/environment.ts",
             "environments": {
@@ -49,7 +49,7 @@
         }
     },
     "defaults": {
-        "styleExt": "less",
+        "styleExt": "scss",
         "component": {},
         "serve": {
             "proxyConfig": "proxy.conf.json"
