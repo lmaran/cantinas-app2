@@ -5,6 +5,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { Link1Component } from './link1/link1.component';
         BsDropdownModule.forRoot(),
         TooltipModule.forRoot(),
         ModalModule.forRoot(),
+        NgbModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent],
