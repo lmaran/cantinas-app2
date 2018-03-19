@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --base-href '/app/' --deploy-url '/app/'",
+        "start": "ng serve --base-href /",
         "build": "ng build --base-href '/app/' --deploy-url '/app/'",
         "build-prod": "ng build --prod --base-href '/app/' --deploy-url '/app/'",
         "clean": "rimraf dist",

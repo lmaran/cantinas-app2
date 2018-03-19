@@ -41,10 +41,15 @@
 //@import "~bootstrap/scss/carousel";
 @import '~bootstrap/scss/utilities';
 
+@import '~bootstrap/scss/bootstrap';
+
 // Customization
 // @import 'my-component';
 
 body {
-    padding-top: 5rem;
+    _padding-top: 5rem;
     _font-size: 0.875rem;
+
+    min-height: 75rem;
+    padding-top: 4.5rem;
 }
