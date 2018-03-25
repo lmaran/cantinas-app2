@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --base-href /",
+        "start": "ng serve --host 0.0.0.0 --disable-host-check --base-href /",
         "build": "ng build --base-href '/app/' --deploy-url '/app/'",
         "build-prod": "ng build --prod --base-href '/app/' --deploy-url '/app/'",
         "clean": "rimraf dist",
@@ -23,11 +23,13 @@
         "@angular/platform-browser": "^5.2.0",
         "@angular/platform-browser-dynamic": "^5.2.0",
         "@angular/router": "^5.2.0",
-        "@ng-bootstrap/ng-bootstrap": "^1.0.1",
-        "bootstrap": "^4.0.0",
+        "@clr/angular": "^0.11.10",
+        "@clr/icons": "^0.11.10",
+        "@clr/ui": "^0.11.10",
+        "@webcomponents/custom-elements": "^1.0.9",
         "core-js": "^2.4.1",
-        "ngx-bootstrap": "^2.0.2",
         "rxjs": "^5.5.6",
+        "web-animations-js": "^2.3.1",
         "zone.js": "^0.8.19"
     },
     "devDependencies": {

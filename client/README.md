@@ -1,27 +1,46 @@
-# Client
+<!-- [ ![Codeship Status for lmaran/identity-service](https://app.codeship.com/projects/2e48edb0-cf9f-0135-e213-06060185c4e3/status?branch=master)](https://app.codeship.com/projects/262255) -->
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
+## Development
 
-## Development server
+```bash
+# start server:
+npm start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# start browser:
+http://localhost:4200 or
+http://dev.appstudio.local:4200
 
-## Code scaffolding
+# test with wallaby.js
+ctrl-shift-R-R (start)
+ctrl-shift-R-S (stop)
+http://localhost:51245 or http://wallabyjs.com/app (view results)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# test with mocha
+npm test
+```
 
-## Build
+## Staging (from local)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```bash
+npm build-prod
 
-## Running unit tests
+# start server:
+NODE_ENV=staging MONGO_URI=mongodb://localhost/cantinas-stg PORT=1422 node dist/server/server.js
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# start browser:
+http://dev.appstudio.ro:1422
+```
 
-## Running end-to-end tests
+## Staging
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+# start browser:
+https://stg.cantinas.ro
+```
 
-## Further help
+## Production
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```bash
+# start browser:
+https://cantinas.ro
+```
