@@ -4,5 +4,9 @@
 			"path": "client"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.words": [
+			"sidenav"
+		]
+	}
 }
