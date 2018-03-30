@@ -10,10 +10,20 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { AuthenticationService } from './authentication.service';
-import { UserComponent } from './user/user.component';
+
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { UserFormComponent } from './user/user-form/user-form.component';
 
 @NgModule({
-    declarations: [AppComponent, AboutComponent, HomeComponent, UserComponent],
+    declarations: [
+        AppComponent,
+        AboutComponent,
+        HomeComponent,
+        UserListComponent,
+        UserDetailComponent,
+        UserFormComponent,
+    ],
     imports: [BrowserAnimationsModule, BrowserModule, ClarityModule, AppRoutingModule, FormsModule, HttpClientModule],
     providers: [AuthenticationService],
     bootstrap: [AppComponent],
