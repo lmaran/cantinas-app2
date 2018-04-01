@@ -1,18 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/interfaces/user';
 import { UserDataService } from '../../shared/services/user-data.service';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
     selector: 'app-user-list',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
-    providers: [UserDataService],
+    providers: [UserDataService, UserService],
 })
 export class UserListComponent implements OnInit {
     newUser: User = new User();
-    constructor(private userDataService: UserDataService) {}
 
-    ngOnInit() {}
+    users: User[] = [];
+
+    constructor(private userDataService: UserDataService, private userService: UserService) {}
+
+    ngOnInit() {
+        this.userService.getAllUsers().subscribe(users => {
+            this.users = users;
+            // console.log(users);
+        });
+    }
 
     addUser() {
         this.userDataService.addUser(this.newUser);
@@ -27,7 +36,7 @@ export class UserListComponent implements OnInit {
         this.userDataService.deleteUserById(user.id);
     }
 
-    get users() {
-        return this.userDataService.getAllUsers();
-    }
+    // get users() {
+    //     return this.userDataService.getAllUsers();
+    // }
 }

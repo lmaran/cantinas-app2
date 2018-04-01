@@ -1,11 +1,11 @@
 <h1 style="margin:0">Users</h1>
 
-<button class="btn btn-primary">
+<button class="btn btn-primary" [routerLink]="['/users/add']">
     <clr-icon shape="plus"></clr-icon>
     Adauga utilizator
 </button>
 
-<table class="table">
+<!-- <table class="table">
     <thead>
         <tr>
             <th>Decimal</th>
@@ -38,6 +38,30 @@
             <td>F</td>
             <td>1111</td>
             <td>XV</td>
+        </tr>
+    </tbody>
+</table> -->
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="left">Nume</th>
+            <th class="left">Prenume</th>
+            <th>Varsta</th>
+            <th>Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td class="left">
+                <a href="#" [routerLink]="['/users', user._id]">{{user.lastName}}
+
+                </a>
+            </td>
+            <td class="left">{{user.firstName}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user._id}}</td>
         </tr>
     </tbody>
 </table>
