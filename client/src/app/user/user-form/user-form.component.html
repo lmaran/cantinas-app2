@@ -1,19 +1,20 @@
 <h1 style="margin:0">Adauga utilizator</h1>
 
-<form class="form" [formGroup]="employeeAddressForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
+<form class="form" [formGroup]="angForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
         <div class="form-group">
             <label for="empFullName">Full name</label>
-            <label for="empFullName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('fullName').invalid
-                    && (employeeAddressForm.get('fullName').dirty || employeeAddressForm.get('fullName').touched)">
+            <label for="empFullName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('fullName').invalid
+                    && (angForm.get('fullName').dirty || angForm.get('fullName').touched)">
                 <input id="empFullName" type="text" formControlName="fullName">
                 <span class="tooltip-content">
                     Name is required.
                 </span>
             </label>
+
         </div>
-        <div formGroupName="address">
+        <!-- <div formGroupName="address">
             <div class="form-group">
                 <label for="empPostalCode">Postal code</label>
                 <label for="empPostalCode" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('address').get('postalCode').invalid
@@ -36,8 +37,8 @@
                     </span>
                 </label>
             </div>
-        </div>
-        <button class="btn btn-primary" type="submit" [disabled]="employeeAddressForm.invalid">Add</button>
+        </div> -->
+        <button class="btn btn-primary" type="submit" [disabled]="angForm.invalid">Add</button>
         <!-- <button type="submit" [disabled]="!form.valid">Submit</button>
         <button (click)="partialUpdate()">Partial Update</button>
         <button (click)="fullUpdate()">Full Update</button>

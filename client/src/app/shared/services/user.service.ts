@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 // import { Http, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User } from '../interfaces/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -38,14 +38,17 @@ export class UserService {
     //       .catch(this.handleError);
     //   }
 
-    //   public getUserById(userId: number): Observable<User> {
-    //     return this.http
-    //       .get(API_URL + '/users/' + userId)
-    //       .map(response => {
-    //         return new User(response.json());
-    //       })
-    //       .catch(this.handleError);
-    //   }
+    public getUserById(userId: string): Observable<User> {
+        return (
+            this.http
+                // .get(API_URL + '/users/' + userId)
+                .get(`app/api/v1/users/${userId}`)
+                //   .map(response => {
+                //     return new User(response.json());
+                //   })
+                .catch(this.handleError)
+        );
+    }
 
     //   public updateUser(user: User): Observable<User> {
     //     return this.http
