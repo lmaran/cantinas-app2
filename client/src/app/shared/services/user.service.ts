@@ -29,14 +29,17 @@ export class UserService {
         );
     }
 
-    //   public createUser(user: User): Observable<User> {
-    //     return this.http
-    //       .post(API_URL + '/users', user)
-    //       .map(response => {
-    //         return new User(response.json());
-    //       })
-    //       .catch(this.handleError);
-    //   }
+    public createUser(user: User): Observable<User> {
+        return (
+            this.http
+                // .post(API_URL + '/users', user)
+                .post('app/api/v1/users', user)
+                //   .map(response => {
+                //     return new User(response.json());
+                //   })
+                .catch(this.handleError)
+        );
+    }
 
     public getUserById(userId: string): Observable<User> {
         return (

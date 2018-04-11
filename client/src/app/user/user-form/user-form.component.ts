@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/filter';
@@ -12,12 +13,20 @@ import { User } from '../../shared/interfaces/user';
     styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
+    isEditMode: boolean;
+    submitted: boolean;
     angForm: FormGroup;
     user: User;
 
     // firstName = new FormControl('', Validators.required);
 
-    constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private fb: FormBuilder,
+        private userService: UserService,
+        private _location: Location
+    ) {
         // this.form = fb.group({
         //     firstName: this.firstName,
         //     password: ['', Validators.required],
@@ -36,7 +45,7 @@ export class UserFormComponent implements OnInit {
 
     createForm() {
         this.angForm = this.fb.group({
-            fullName: 'aaabbb',
+            firstName: '',
             latitude: ['43.815623', Validators.required],
             longitude: ['18.5683106', Validators.required],
         });
@@ -46,6 +55,14 @@ export class UserFormComponent implements OnInit {
         console.log('model-based form submitted');
         // console.log(this.form);
         // console.log(this.employeeAddressForm.value);
+
+        const user = this.angForm.value;
+        console.log(user); // https://toddmotto.com/angular-2-forms-reactive
+
+        this.submitted = true;
+        this.userService.createUser(user).subscribe(saved => {
+            this.router.navigate(['/users']);
+        });
     }
 
     // addNewEmployeeAddress() {
@@ -65,6 +82,11 @@ export class UserFormComponent implements OnInit {
     //     this.form.reset();
     // }
 
+    goBack() {
+        // https://stackoverflow.com/a/36470719
+        this._location.back();
+    }
+
     ngOnInit() {
         // this.form.valueChanges
         //     .map(value => {
@@ -76,17 +98,17 @@ export class UserFormComponent implements OnInit {
         //         console.log('Model Driven Form valid value: vm = ', JSON.stringify(value));
         //     });
 
-        const ii = this.route.snapshot.params;
-        console.log(ii);
-
         this.route.params.subscribe((params: Params) => {
             const id = params['id'];
+            if (id) {
+                this.isEditMode = true;
 
-            this.userService.getUserById(id.toString()).subscribe((user: User) => {
-                this.user = user;
-                this.angForm.reset({ fullName: user.firstName });
-                console.log(user);
-            });
+                this.userService.getUserById(id.toString()).subscribe((user: User) => {
+                    this.user = user;
+                    this.angForm.reset({ firstName: user.firstName });
+                    // console.log(user);
+                });
+            }
 
             // this.user = {
             //     id: id,

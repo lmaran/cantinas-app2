@@ -5,9 +5,9 @@
         <!-- <label>Add Employee Address</label> -->
         <div class="form-group">
             <label for="empFullName">Full name</label>
-            <label for="empFullName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('fullName').invalid
-                    && (angForm.get('fullName').dirty || angForm.get('fullName').touched)">
-                <input id="empFullName" type="text" formControlName="fullName">
+            <label for="empFullName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('firstName').invalid
+                    && (angForm.get('firstName').dirty || angForm.get('firstName').touched)">
+                <input id="empFullName" type="text" formControlName="firstName">
                 <span class="tooltip-content">
                     Name is required.
                 </span>
@@ -38,7 +38,8 @@
                 </label>
             </div>
         </div> -->
-        <button class="btn btn-primary" type="submit" [disabled]="angForm.invalid">Add</button>
+        <button class="btn btn-primary" type="submit" [disabled]="angForm.invalid">Salveaza</button>
+        <button (click)="goBack()" class="btn">Renunta</button>
         <!-- <button type="submit" [disabled]="!form.valid">Submit</button>
         <button (click)="partialUpdate()">Partial Update</button>
         <button (click)="fullUpdate()">Full Update</button>
