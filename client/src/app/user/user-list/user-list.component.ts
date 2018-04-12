@@ -17,6 +17,14 @@ export class UserListComponent implements OnInit {
     constructor(private userDataService: UserDataService, private userService: UserService) {}
 
     ngOnInit() {
+        // this.userService.getAllUsers().subscribe(users => {
+        //     this.users = users;
+        //     // console.log(users);
+        // });
+        this.refreshUserList();
+    }
+
+    refreshUserList() {
         this.userService.getAllUsers().subscribe(users => {
             this.users = users;
             // console.log(users);
@@ -32,8 +40,13 @@ export class UserListComponent implements OnInit {
         this.userDataService.toggleUserComplete(user);
     }
 
-    removeUser(user) {
-        this.userDataService.deleteUserById(user.id);
+    deleteUser(id) {
+        // this.userService.deleteUserById(id);
+        this.userService.deleteUserById(id).subscribe(res => {
+            // console.log(res);
+            // console.log('Deleted');
+            this.refreshUserList();
+        });
     }
 
     // get users() {

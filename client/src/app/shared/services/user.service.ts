@@ -49,6 +49,7 @@ export class UserService {
                 //   .map(response => {
                 //     return new User(response.json());
                 //   })
+                // .do(data => console.log('server data:', data)) // debug
                 .catch(this.handleError)
         );
     }
@@ -62,12 +63,28 @@ export class UserService {
     //       .catch(this.handleError);
     //   }
 
-    //   public deleteUserById(userId: number): Observable<null> {
-    //     return this.http
-    //       .delete(API_URL + '/users/' + userId)
-    //       .map(response => null)
-    //       .catch(this.handleError);
-    //   }
+    // public deleteUserById(userId: string): Observable<HttpResponse<number>> {
+    //     console.log(userId);
+    //     return (
+    //         this.http
+    //             // .delete(API_URL + '/users/' + userId)
+    //             .delete(`app/api/v1/users/${userId}`)
+    //             .map((response: HttpResponse<number>) => response.status)
+    //             .catch(this.handleError)
+    //     );
+    // }
+
+    public deleteUserById(userId: string): Observable<HttpResponse<number>> {
+        const uri = `app/api/v1/users/${userId}`;
+        return (
+            this.http
+                // .delete(API_URL + '/users/' + userId)
+                // tell HttpClient that we want the full response https://stackoverflow.com/a/46809000/2726725
+                .delete(uri, { observe: 'response' })
+                .map((response: HttpResponse<number>) => response.status)
+                .catch(this.handleError)
+        );
+    }
 
     private handleError(error: Response | any) {
         console.error('ApiService::handleError', error);

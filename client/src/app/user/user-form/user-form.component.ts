@@ -57,7 +57,7 @@ export class UserFormComponent implements OnInit {
         // console.log(this.employeeAddressForm.value);
 
         const user = this.angForm.value;
-        console.log(user); // https://toddmotto.com/angular-2-forms-reactive
+        // console.log(user); // https://toddmotto.com/angular-2-forms-reactive
 
         this.submitted = true;
         this.userService.createUser(user).subscribe(saved => {
