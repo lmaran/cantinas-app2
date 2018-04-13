@@ -13,6 +13,8 @@ export class UserListComponent implements OnInit {
     newUser: User = new User();
 
     users: User[] = [];
+    deleteModal = false;
+    selectedUser: User = new User();
 
     constructor(private userDataService: UserDataService, private userService: UserService) {}
 
@@ -40,16 +42,22 @@ export class UserListComponent implements OnInit {
         this.userDataService.toggleUserComplete(user);
     }
 
-    deleteUser(id) {
-        // this.userService.deleteUserById(id);
-        this.userService.deleteUserById(id).subscribe(res => {
-            // console.log(res);
-            // console.log('Deleted');
-            this.refreshUserList();
-        });
-    }
-
     // get users() {
     //     return this.userDataService.getAllUsers();
     // }
+
+    /**
+     * Delete user
+     */
+    confirmDeleteUser(user) {
+        this.deleteModal = true;
+        this.selectedUser = user;
+    }
+
+    deleteUser(userId) {
+        this.deleteModal = false;
+        this.userService.deleteUserById(userId).subscribe(res => {
+            this.refreshUserList();
+        });
+    }
 }
