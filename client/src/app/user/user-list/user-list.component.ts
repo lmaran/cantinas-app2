@@ -38,9 +38,9 @@ export class UserListComponent implements OnInit {
         this.newUser = new User();
     }
 
-    toggleUserComplete(user) {
-        this.userDataService.toggleUserComplete(user);
-    }
+    // toggleUserComplete(user) {
+    //     this.userDataService.toggleUserComplete(user);
+    // }
 
     // get users() {
     //     return this.userDataService.getAllUsers();

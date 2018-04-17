@@ -42,15 +42,15 @@ export class UserDetailComponent implements OnInit {
         console.log(this.employeeAddressForm.value);
     }
     ngOnInit() {
-        this.route.parent.params.subscribe((params: Params) => {
-            const id = +params['id'];
+        this.route.params.subscribe((params: Params) => {
+            const id = params['id'];
             // this.userService.getCustomer(id).subscribe((customer: ICustomer) => {
             //     this.customer = customer;
             //     this.mapEnabled = true;
             // });
 
             this.user = {
-                id: id,
+                _id: id,
                 firstName: 'aaa1',
                 lastName: 'bbb',
                 age: 20,

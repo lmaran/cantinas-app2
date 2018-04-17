@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -25,7 +25,8 @@ export class UserFormComponent implements OnInit {
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private userService: UserService,
-        private _location: Location
+        private _location: Location,
+        public renderer2: Renderer2
     ) {
         // this.form = fb.group({
         //     firstName: this.firstName,
@@ -46,8 +47,10 @@ export class UserFormComponent implements OnInit {
     createForm() {
         this.angForm = this.fb.group({
             firstName: '',
-            latitude: ['43.815623', Validators.required],
-            longitude: ['18.5683106', Validators.required],
+            lastName: '',
+            age: '',
+            // latitude: ['43.815623', Validators.required],
+            // longitude: ['18.5683106', Validators.required],
         });
     }
 
@@ -97,6 +100,8 @@ export class UserFormComponent implements OnInit {
         //     .subscribe(value => {
         //         console.log('Model Driven Form valid value: vm = ', JSON.stringify(value));
         //     });
+
+        this.renderer2.selectRootElement('#empFirstName').focus(); // https://stackoverflow.com/a/34573219/2726725
 
         this.route.params.subscribe((params: Params) => {
             const id = params['id'];
