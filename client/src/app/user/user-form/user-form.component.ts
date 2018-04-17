@@ -17,6 +17,7 @@ export class UserFormComponent implements OnInit {
     submitted: boolean;
     angForm: FormGroup;
     user: User;
+    title: string;
 
     // firstName = new FormControl('', Validators.required);
 
@@ -55,17 +56,27 @@ export class UserFormComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log('model-based form submitted');
+        // console.log('model-based form submitted');
         // console.log(this.form);
         // console.log(this.employeeAddressForm.value);
 
         const user = this.angForm.value;
+
         // console.log(user); // https://toddmotto.com/angular-2-forms-reactive
 
         this.submitted = true;
-        this.userService.createUser(user).subscribe(saved => {
-            this.router.navigate(['/users']);
-        });
+
+        if (this.isEditMode) {
+            user._id = this.user._id;
+
+            this.userService.updateUser(user).subscribe(saved => {
+                this.router.navigate(['/users']);
+            });
+        } else {
+            this.userService.createUser(user).subscribe(saved => {
+                this.router.navigate(['/users']);
+            });
+        }
     }
 
     // addNewEmployeeAddress() {
@@ -101,18 +112,24 @@ export class UserFormComponent implements OnInit {
         //         console.log('Model Driven Form valid value: vm = ', JSON.stringify(value));
         //     });
 
-        this.renderer2.selectRootElement('#empFirstName').focus(); // https://stackoverflow.com/a/34573219/2726725
+        this.renderer2.selectRootElement('#empLastName').focus(); // https://stackoverflow.com/a/34573219/2726725
+
+        // or directly...https://github.com/rogerpadilla/angular2-minimalist-starter/blob/master/src/app/question/question-form.component.ts
+        // const id = this.route.snapshot.params['id'];
 
         this.route.params.subscribe((params: Params) => {
             const id = params['id'];
             if (id) {
                 this.isEditMode = true;
+                this.title = 'Editeaza utilizator';
 
                 this.userService.getUserById(id.toString()).subscribe((user: User) => {
                     this.user = user;
-                    this.angForm.reset({ firstName: user.firstName });
+                    this.angForm.reset({ firstName: user.firstName, lastName: user.lastName });
                     // console.log(user);
                 });
+            } else {
+                this.title = 'Adauga utilizator';
             }
 
             // this.user = {

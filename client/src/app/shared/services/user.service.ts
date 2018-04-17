@@ -29,18 +29,6 @@ export class UserService {
         );
     }
 
-    public createUser(user: User): Observable<User> {
-        return (
-            this.http
-                // .post(API_URL + '/users', user)
-                .post('app/api/v1/users', user)
-                //   .map(response => {
-                //     return new User(response.json());
-                //   })
-                .catch(this.handleError)
-        );
-    }
-
     public getUserById(userId: string): Observable<User> {
         return (
             this.http
@@ -54,14 +42,29 @@ export class UserService {
         );
     }
 
-    //   public updateUser(user: User): Observable<User> {
-    //     return this.http
-    //       .put(API_URL + '/users/' + user.id, user)
-    //       .map(response => {
-    //         return new User(response.json());
-    //       })
-    //       .catch(this.handleError);
-    //   }
+    public createUser(user: User): Observable<User> {
+        return (
+            this.http
+                // .post(API_URL + '/users', user)
+                .post('app/api/v1/users', user)
+                //   .map(response => {
+                //     return new User(response.json());
+                //   })
+                .catch(this.handleError)
+        );
+    }
+
+    public updateUser(user: User): Observable<User> {
+        return (
+            this.http
+                // .put(API_URL + '/users/' + user.id, user)
+                .put(`app/api/v1/users`, user)
+                //   .map(response => {
+                //     return new User(response.json());
+                //   })
+                .catch(this.handleError)
+        );
+    }
 
     // public deleteUserById(userId: string): Observable<HttpResponse<number>> {
     //     console.log(userId);

@@ -1,22 +1,11 @@
-<h1 style="margin:0">Adauga utilizator</h1>
+<h1 style="margin:0">{{title}}</h1>
 
 <form class="form" [formGroup]="angForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
-        <div class="form-group">
-            <label for="empFirstName">First name</label>
-            <label for="empFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('firstName').invalid
-                    && (angForm.get('firstName').dirty || angForm.get('firstName').touched)">
-                <input id="empFirstName" type="text" formControlName="firstName">
-                <span class="tooltip-content">
-                    Name is required.
-                </span>
-            </label>
-
-        </div>
 
         <div class="form-group">
-            <label for="empLastName">Last name</label>
+            <label for="empLastName">Nume</label>
             <label for="empLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('firstName').invalid
                     && (angForm.get('firstName').dirty || angForm.get('firstName').touched)">
                 <input id="empLastName" type="text" formControlName="lastName">
@@ -24,7 +13,17 @@
                     Name is required.
                 </span>
             </label>
+        </div>
 
+        <div class="form-group">
+            <label for="empFirstName">Prenume</label>
+            <label for="empFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('firstName').invalid
+                    && (angForm.get('firstName').dirty || angForm.get('firstName').touched)">
+                <input id="empFirstName" type="text" formControlName="firstName">
+                <span class="tooltip-content">
+                    Name is required.
+                </span>
+            </label>
         </div>
 
         <!-- <div formGroupName="address">
