@@ -15,7 +15,7 @@ import { User } from '../../shared/interfaces/user';
 export class UserFormComponent implements OnInit {
     isEditMode: boolean;
     submitted: boolean;
-    angForm: FormGroup;
+    userForm: FormGroup;
     user: User;
     title: string;
 
@@ -36,7 +36,7 @@ export class UserFormComponent implements OnInit {
         this.createForm();
     }
 
-    // employeeAddressForm = new FormGroup({
+    // userloyeeAddressForm = new FormGroup({
     //     fullName: new FormControl('aaa', Validators.required),
     //     address: new FormGroup({
     //         postalCode: new FormControl('', Validators.required),
@@ -46,9 +46,9 @@ export class UserFormComponent implements OnInit {
     // submitted = false;
 
     createForm() {
-        this.angForm = this.fb.group({
+        this.userForm = this.fb.group({
             firstName: '',
-            lastName: '',
+            lastName: ['', Validators.required],
             age: '',
             // latitude: ['43.815623', Validators.required],
             // longitude: ['18.5683106', Validators.required],
@@ -58,11 +58,11 @@ export class UserFormComponent implements OnInit {
     onSubmit() {
         // console.log('model-based form submitted');
         // console.log(this.form);
-        // console.log(this.employeeAddressForm.value);
+        // console.log(this.userloyeeAddressForm.value);
 
-        const user = this.angForm.value;
+        const user = this.userForm.value;
 
-        // console.log(user); // https://toddmotto.com/angular-2-forms-reactive
+        console.log(user); // https://toddmotto.com/angular-2-forms-reactive
 
         this.submitted = true;
 
@@ -80,7 +80,7 @@ export class UserFormComponent implements OnInit {
     }
 
     // addNewEmployeeAddress() {
-    //     this.employeeAddressForm.reset();
+    //     this.userloyeeAddressForm.reset();
     //     this.submitted = false;
     // }
 
@@ -112,7 +112,7 @@ export class UserFormComponent implements OnInit {
         //         console.log('Model Driven Form valid value: vm = ', JSON.stringify(value));
         //     });
 
-        this.renderer2.selectRootElement('#empLastName').focus(); // https://stackoverflow.com/a/34573219/2726725
+        this.renderer2.selectRootElement('#userLastName').focus(); // https://stackoverflow.com/a/34573219/2726725
 
         // or directly...https://github.com/rogerpadilla/angular2-minimalist-starter/blob/master/src/app/question/question-form.component.ts
         // const id = this.route.snapshot.params['id'];
@@ -125,7 +125,7 @@ export class UserFormComponent implements OnInit {
 
                 this.userService.getUserById(id.toString()).subscribe((user: User) => {
                     this.user = user;
-                    this.angForm.reset({ firstName: user.firstName, lastName: user.lastName });
+                    this.userForm.reset({ firstName: user.firstName, lastName: user.lastName });
                     // console.log(user);
                 });
             } else {
@@ -140,7 +140,7 @@ export class UserFormComponent implements OnInit {
             //     complete: true,
             // };
 
-            // this.employeeAddressForm = this.fb.group({
+            // this.userloyeeAddressForm = this.fb.group({
             //     fullName: this.user.firstName,
             //     latitude: ['43.815623', Validators.required],
             //     longitude: ['18.5683106', Validators.required],

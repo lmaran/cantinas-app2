@@ -1,14 +1,14 @@
 <h1 style="margin:0">{{title}}</h1>
 
-<form class="form" [formGroup]="angForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
+<form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
 
         <div class="form-group">
-            <label for="empLastName">Nume</label>
-            <label for="empLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('firstName').invalid
-                    && (angForm.get('firstName').dirty || angForm.get('firstName').touched)">
-                <input id="empLastName" type="text" formControlName="lastName">
+            <label for="userLastName" class="required">Nume</label>
+            <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userForm.get('firstName').invalid
+                    && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
+                <input id="userLastName" type="text" formControlName="lastName">
                 <span class="tooltip-content">
                     Name is required.
                 </span>
@@ -16,10 +16,10 @@
         </div>
 
         <div class="form-group">
-            <label for="empFirstName">Prenume</label>
-            <label for="empFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="angForm.get('firstName').invalid
-                    && (angForm.get('firstName').dirty || angForm.get('firstName').touched)">
-                <input id="empFirstName" type="text" formControlName="firstName">
+            <label for="userFirstName">Prenume</label>
+            <label for="userFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userForm.get('firstName').invalid
+                    && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
+                <input id="userFirstName" type="text" formControlName="firstName">
                 <span class="tooltip-content">
                     Name is required.
                 </span>
@@ -28,29 +28,29 @@
 
         <!-- <div formGroupName="address">
             <div class="form-group">
-                <label for="empLastName">Last name</label>
-                <label for="empLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('address').get('postalCode').invalid
-                        && (employeeAddressForm.get('address').get('postalCode').dirty ||
-                        employeeAddressForm.get('address').get('postalCode').touched)">
-                    <input id="empLastName" type="text" formControlName="lastName">
+                <label for="userLastName">Last name</label>
+                <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userloyeeAddressForm.get('address').get('postalCode').invalid
+                        && (userloyeeAddressForm.get('address').get('postalCode').dirty ||
+                        userloyeeAddressForm.get('address').get('postalCode').touched)">
+                    <input id="userLastName" type="text" formControlName="lastName">
                     <span class="tooltip-content">
                         Postal code is required.
                     </span>
                 </label>
             </div>
             <div class="form-group">
-                <label for="empCountry">Country</label>
-                <label for="empCountry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('address').get('country').invalid
-                        && (employeeAddressForm.get('address').get('country').dirty ||
-                        employeeAddressForm.get('address').get('country').touched)">
-                    <input id="empCountry" type="text" formControlName="country">
+                <label for="userCountry">Country</label>
+                <label for="userCountry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userloyeeAddressForm.get('address').get('country').invalid
+                        && (userloyeeAddressForm.get('address').get('country').dirty ||
+                        userloyeeAddressForm.get('address').get('country').touched)">
+                    <input id="userCountry" type="text" formControlName="country">
                     <span class="tooltip-content">
                         Country is required.
                     </span>
                 </label>
             </div>
         </div> -->
-        <button class="btn btn-primary" type="submit" [disabled]="angForm.invalid">Salveaza</button>
+        <button class="btn btn-primary" type="submit">Salveaza</button>
         <button (click)="goBack()" class="btn">Renunta</button>
         <!-- <button type="submit" [disabled]="!form.valid">Submit</button>
         <button (click)="partialUpdate()">Partial Update</button>
