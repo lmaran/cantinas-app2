@@ -1,8 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/filter';
+import { ValidationService } from '../../shared/services/validation.service';
 
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/interfaces/user';
@@ -24,12 +25,12 @@ export class UserFormComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private fb: FormBuilder,
+        private formBuilder: FormBuilder,
         private userService: UserService,
         private _location: Location,
         public renderer2: Renderer2
     ) {
-        // this.form = fb.group({
+        // this.form = formBuilder.group({
         //     firstName: this.firstName,
         //     password: ['', Validators.required],
         // });
@@ -46,12 +47,39 @@ export class UserFormComponent implements OnInit {
     // submitted = false;
 
     createForm() {
-        this.userForm = this.fb.group({
+        this.userForm = this.formBuilder.group({
             firstName: '',
             lastName: ['', Validators.required],
             age: '',
-            // latitude: ['43.815623', Validators.required],
-            // longitude: ['18.5683106', Validators.required],
+            email: [null, [Validators.required, Validators.email]],
+        });
+    }
+
+    // https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit
+    validateAllFormFields(formGroup: FormGroup) {
+        Object.keys(formGroup.controls).forEach(field => {
+            const control = formGroup.get(field);
+            if (control instanceof FormControl) {
+                control.markAsTouched({ onlySelf: true });
+                console.log(field); // firstName, email
+                console.log(control.errors); // {required:true, email:true}
+
+                if (control.errors && control.errors.required) {
+                    const propertyName = 'required';
+                    const err = ValidationService.getValidatorErrorMessage(propertyName, control.errors[propertyName]);
+                    console.log(err);
+                }
+
+                if (control.errors && control.errors.email) {
+                    const propertyName = 'email';
+                    const err = ValidationService.getValidatorErrorMessage(propertyName, control.errors[propertyName]);
+                    console.log(err);
+                }
+
+                console.log('------------------');
+            } else if (control instanceof FormGroup) {
+                this.validateAllFormFields(control);
+            }
         });
     }
 
@@ -59,6 +87,16 @@ export class UserFormComponent implements OnInit {
         // console.log('model-based form submitted');
         // console.log(this.form);
         // console.log(this.userloyeeAddressForm.value);
+
+        if (this.userForm.valid) {
+            console.log('Valid form.');
+        } else {
+            console.log('Invalid form.');
+
+            this.validateAllFormFields(this.userForm);
+
+            return;
+        }
 
         const user = this.userForm.value;
 
@@ -140,7 +178,7 @@ export class UserFormComponent implements OnInit {
             //     complete: true,
             // };
 
-            // this.userloyeeAddressForm = this.fb.group({
+            // this.userloyeeAddressForm = this.formBuilder.group({
             //     fullName: this.user.firstName,
             //     latitude: ['43.815623', Validators.required],
             //     longitude: ['18.5683106', Validators.required],

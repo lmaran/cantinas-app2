@@ -4,7 +4,7 @@
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="userLastName" class="required">Nume</label>
             <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userForm.get('firstName').invalid
                     && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
@@ -13,6 +13,11 @@
                     Name is required.
                 </span>
             </label>
+        </div> -->
+
+        <div class="form-group">
+            <label for="userLastName" class="required">Nume</label>
+            <input id="userLastName" type="text" formControlName="lastName">
         </div>
 
         <div class="form-group">
@@ -25,6 +30,33 @@
                 </span>
             </label>
         </div>
+
+        <div class="form-group">
+            <label for="userEmail">Email</label>
+            <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="userForm.get('email').invalid
+                    && (userForm.get('email').dirty || userForm.get('email').touched)">
+                <input id="userEmail" type="text" formControlName="email">
+                <span class="tooltip-content">
+                    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
+                        Email is required
+                    </div>
+                    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('email')">
+                        Email has an invalid format
+                    </div>
+                    <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].required">
+
+                    </div> -->
+                    <!--<div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].email">
+                        Email has an invalid format
+                    </div> -->
+                </span>
+            </label>
+        </div>
+
+        <!-- <div class="form-group">
+            <label for="userEmail" class="required">Email</label>
+            <input id="userEmail" type="text" formControlName="email">
+        </div> -->
 
         <!-- <div formGroupName="address">
             <div class="form-group">
