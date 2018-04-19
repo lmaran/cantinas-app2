@@ -34,24 +34,26 @@
         <div class="form-group">
             <label for="userEmail">Email</label>
             <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="userForm.get('email').invalid
-                    && (userForm.get('email').dirty || userForm.get('email').touched)">
+                    && (userForm.get('email').touched)">
                 <input id="userEmail" type="text" formControlName="email">
                 <span class="tooltip-content">
-                    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
+                    <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
                         Email is required
                     </div>
                     <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('email')">
                         Email has an invalid format
-                    </div>
-                    <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].required">
+                    </div> -->
 
-                    </div> -->
-                    <!--<div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].email">
-                        Email has an invalid format
-                    </div> -->
+                    <app-display-error [displayError]="isFieldValid('email')" [field]="userForm.get('email')">
+                    </app-display-error>
+
                 </span>
             </label>
+
         </div>
+
+        <app-display-error [displayError]="isFieldValid('email')" [field]="userForm.get('email')">
+        </app-display-error>
 
         <!-- <div class="form-group">
             <label for="userEmail" class="required">Email</label>

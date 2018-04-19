@@ -55,6 +55,10 @@ export class UserFormComponent implements OnInit {
         });
     }
 
+    isFieldValid(field: string) {
+        return !this.userForm.get(field).valid && this.userForm.get(field).touched;
+    }
+
     // https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
