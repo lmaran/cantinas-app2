@@ -19,6 +19,8 @@ export class UserFormComponent implements OnInit {
     userForm: FormGroup;
     user: User;
     title: string;
+    private formSubmitAttempt: boolean;
+    getFirstErr: string;
 
     // firstName = new FormControl('', Validators.required);
 
@@ -46,6 +48,11 @@ export class UserFormComponent implements OnInit {
     // });
     // submitted = false;
 
+    // getFirstErr() {
+    //     console.log('aaaaaa');
+    //     return 'aaaa';
+    // }
+
     createForm() {
         this.userForm = this.formBuilder.group({
             firstName: '',
@@ -55,8 +62,23 @@ export class UserFormComponent implements OnInit {
         });
     }
 
-    isFieldValid(field: string) {
+    isFieldInvalid2(field: string) {
         return !this.userForm.get(field).valid && this.userForm.get(field).touched;
+    }
+
+    isFieldInvalid(field: string) {
+        // return (
+        //     (!this.userForm.get(field).valid && this.userForm.get(field).touched) ||
+        //     (this.userForm.get(field).untouched && this.formSubmitAttempt)
+        // );
+        return !this.userForm.get(field).valid && this.formSubmitAttempt;
+    }
+
+    displayFieldCss(field: string) {
+        return {
+            'has-error': this.isFieldInvalid(field),
+            'has-feedback': this.isFieldInvalid(field),
+        };
     }
 
     // https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit
@@ -72,12 +94,12 @@ export class UserFormComponent implements OnInit {
                     const propertyName = 'required';
                     const err = ValidationService.getValidatorErrorMessage(propertyName, control.errors[propertyName]);
                     console.log(err);
-                }
-
-                if (control.errors && control.errors.email) {
+                    this.getFirstErr = err;
+                } else if (control.errors && control.errors.email) {
                     const propertyName = 'email';
                     const err = ValidationService.getValidatorErrorMessage(propertyName, control.errors[propertyName]);
                     console.log(err);
+                    this.getFirstErr = err;
                 }
 
                 console.log('------------------');
@@ -88,36 +110,33 @@ export class UserFormComponent implements OnInit {
     }
 
     onSubmit() {
-        // console.log('model-based form submitted');
-        // console.log(this.form);
-        // console.log(this.userloyeeAddressForm.value);
+        this.formSubmitAttempt = true;
 
         if (this.userForm.valid) {
             console.log('Valid form.');
+            const user = this.userForm.value;
+
+            console.log(user); // https://toddmotto.com/angular-2-forms-reactive
+
+            this.submitted = true;
+
+            if (this.isEditMode) {
+                user._id = this.user._id;
+
+                this.userService.updateUser(user).subscribe(saved => {
+                    this.router.navigate(['/users']);
+                });
+            } else {
+                this.userService.createUser(user).subscribe(saved => {
+                    this.router.navigate(['/users']);
+                });
+            }
         } else {
             console.log('Invalid form.');
 
             this.validateAllFormFields(this.userForm);
 
             return;
-        }
-
-        const user = this.userForm.value;
-
-        console.log(user); // https://toddmotto.com/angular-2-forms-reactive
-
-        this.submitted = true;
-
-        if (this.isEditMode) {
-            user._id = this.user._id;
-
-            this.userService.updateUser(user).subscribe(saved => {
-                this.router.navigate(['/users']);
-            });
-        } else {
-            this.userService.createUser(user).subscribe(saved => {
-                this.router.navigate(['/users']);
-            });
         }
     }
 
@@ -143,7 +162,18 @@ export class UserFormComponent implements OnInit {
         this._location.back();
     }
 
+    reset() {
+        this.userForm.reset();
+        this.formSubmitAttempt = false;
+    }
+
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnChanges() {
+        console.log('ccc');
+    }
+
     ngOnInit() {
+        console.log('bbb');
         // this.form.valueChanges
         //     .map(value => {
         //         value.firstName = value.firstName.toUpperCase();
@@ -186,6 +216,40 @@ export class UserFormComponent implements OnInit {
             //     fullName: this.user.firstName,
             //     latitude: ['43.815623', Validators.required],
             //     longitude: ['18.5683106', Validators.required],
+            // });
+        });
+
+        // https://alligator.io/angular/reactive-forms-valuechanges/
+        this.onChanges();
+    }
+
+    // // listen for changes on the entire form
+    // onChanges(): void {
+    //     this.userForm.valueChanges.subscribe(val => {
+    //         this.getFirstErr = `Hello,
+    //       My name is ${val.firstName} and my email is ${val.email}.`;
+    //     });
+    // }
+
+    // listen for changes on on specific form control
+    onChanges(): void {
+        this.userForm.get('email').valueChanges.subscribe(val => {
+            console.log(this.userForm.get('email').errors);
+
+            const errors = this.userForm.get('email').errors;
+            if (errors) {
+                const k = Object.keys(this.userForm.get('email').errors);
+                // if (k && k.length > 0) {
+                //     console.log(k[0]);
+                // }
+                this.getFirstErr = `My first err is ${k[0]}.`;
+            }
+
+            // this.getFirstErr = `My email is ${val}.`;
+
+            // Object.keys(this.field.errors).forEach(key => {
+            // console.log(key);
+            // return key;
             // });
         });
     }

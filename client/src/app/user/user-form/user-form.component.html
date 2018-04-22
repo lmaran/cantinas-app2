@@ -17,7 +17,24 @@
 
         <div class="form-group">
             <label for="userLastName" class="required">Nume</label>
-            <input id="userLastName" type="text" formControlName="lastName">
+            <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="isFieldInvalid('lastName')">
+                <input id="userLastName" type="text" formControlName="lastName">
+                <span class="tooltip-content">
+                    <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
+                        Email is required
+                    </div>
+                    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('email')">
+                        Email has an invalid format
+                    </div> -->
+
+                    <!-- <app-display-error [displayError]="isFieldInvalid('email')" [field]="userForm.get('email')">
+                    </app-display-error> -->
+
+                    <app-display-error [displayError]="isFieldInvalid('lastName')" errorMsg={{getFirstErr}}>
+                    </app-display-error>
+
+                </span>
+            </label>
         </div>
 
         <div class="form-group">
@@ -32,9 +49,8 @@
         </div>
 
         <div class="form-group">
-            <label for="userEmail">Email</label>
-            <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="userForm.get('email').invalid
-                    && (userForm.get('email').touched)">
+            <label for="userEmail" class="required">Email</label>
+            <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="isFieldInvalid('email')">
                 <input id="userEmail" type="text" formControlName="email">
                 <span class="tooltip-content">
                     <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
@@ -44,7 +60,10 @@
                         Email has an invalid format
                     </div> -->
 
-                    <app-display-error [displayError]="isFieldValid('email')" [field]="userForm.get('email')">
+                    <!-- <app-display-error [displayError]="isFieldInvalid('email')" [field]="userForm.get('email')">
+                    </app-display-error> -->
+
+                    <app-display-error [displayError]="isFieldInvalid('email')" errorMsg={{getFirstErr}}>
                     </app-display-error>
 
                 </span>
@@ -52,8 +71,11 @@
 
         </div>
 
-        <app-display-error [displayError]="isFieldValid('email')" [field]="userForm.get('email')">
-        </app-display-error>
+        <!-- <app-display-error [displayError]="isFieldInvalid('email')" [field]="userForm.get('email')">
+        </app-display-error> -->
+        <!-- <app-display-error [displayError]="isFieldInvalid('email')" errorMsg={{getFirstErr}}>
+        </app-display-error> -->
+
 
         <!-- <div class="form-group">
             <label for="userEmail" class="required">Email</label>
