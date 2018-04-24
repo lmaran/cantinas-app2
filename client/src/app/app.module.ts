@@ -16,7 +16,7 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
 
 import { UserService } from '../app/shared/services/user.service';
-import { DisplayErrorComponent } from './display-error/display-error.component';
+import { DisplayErrorComponent } from './core/display-error/display-error.component';
 
 @NgModule({
     declarations: [

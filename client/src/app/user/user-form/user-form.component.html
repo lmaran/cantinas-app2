@@ -4,46 +4,22 @@
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
 
-        <!-- <div class="form-group">
-            <label for="userLastName" class="required">Nume</label>
-            <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userForm.get('firstName').invalid
-                    && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
-                <input id="userLastName" type="text" formControlName="lastName">
-                <span class="tooltip-content">
-                    Name is required.
-                </span>
-            </label>
-        </div> -->
-
         <div class="form-group">
             <label for="userLastName" class="required">Nume</label>
-            <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="isFieldInvalid('lastName')">
+            <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('lastName')">
                 <input id="userLastName" type="text" formControlName="lastName">
                 <span class="tooltip-content">
-                    <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
-                        Email is required
-                    </div>
-                    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('email')">
-                        Email has an invalid format
-                    </div> -->
-
-                    <!-- <app-display-error [displayError]="isFieldInvalid('email')" [field]="userForm.get('email')">
-                    </app-display-error> -->
-
-                    <app-display-error [displayError]="isFieldInvalid('lastName')" errorMsg={{getFirstErr}}>
-                    </app-display-error>
-
+                    <app-display-error [control]=userForm.controls.lastName></app-display-error>
                 </span>
             </label>
         </div>
 
         <div class="form-group">
-            <label for="userFirstName">Prenume</label>
-            <label for="userFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userForm.get('firstName').invalid
-                    && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
+            <label for="userFirstName" class="required">Prenume</label>
+            <label for="userFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('firstName')">
                 <input id="userFirstName" type="text" formControlName="firstName">
                 <span class="tooltip-content">
-                    Name is required.
+                    <app-display-error [control]=userForm.controls.firstName></app-display-error>
                 </span>
             </label>
         </div>
@@ -51,66 +27,16 @@
         <div class="form-group">
             <label for="userEmail" class="required">Email</label>
             <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="isFieldInvalid('email')">
+                <!-- <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="userForm.get('email').invalid"> -->
                 <input id="userEmail" type="text" formControlName="email">
                 <span class="tooltip-content">
-                    <!-- <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('required')">
-                        Email is required
-                    </div>
-                    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].hasError('email')">
-                        Email has an invalid format
-                    </div> -->
-
-                    <!-- <app-display-error [displayError]="isFieldInvalid('email')" [field]="userForm.get('email')">
-                    </app-display-error> -->
-
-                    <app-display-error [displayError]="isFieldInvalid('email')" errorMsg={{getFirstErr}}>
-                    </app-display-error>
-
+                    <app-display-error [control]=userForm.controls.email></app-display-error>
                 </span>
             </label>
-
         </div>
 
-        <!-- <app-display-error [displayError]="isFieldInvalid('email')" [field]="userForm.get('email')">
-        </app-display-error> -->
-        <!-- <app-display-error [displayError]="isFieldInvalid('email')" errorMsg={{getFirstErr}}>
-        </app-display-error> -->
+        <button type="submit" class="btn btn-primary">Salveaza</button>
+        <button type="button" (click)="goBack()" class="btn">Renunta</button>
 
-
-        <!-- <div class="form-group">
-            <label for="userEmail" class="required">Email</label>
-            <input id="userEmail" type="text" formControlName="email">
-        </div> -->
-
-        <!-- <div formGroupName="address">
-            <div class="form-group">
-                <label for="userLastName">Last name</label>
-                <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userloyeeAddressForm.get('address').get('postalCode').invalid
-                        && (userloyeeAddressForm.get('address').get('postalCode').dirty ||
-                        userloyeeAddressForm.get('address').get('postalCode').touched)">
-                    <input id="userLastName" type="text" formControlName="lastName">
-                    <span class="tooltip-content">
-                        Postal code is required.
-                    </span>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="userCountry">Country</label>
-                <label for="userCountry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="userloyeeAddressForm.get('address').get('country').invalid
-                        && (userloyeeAddressForm.get('address').get('country').dirty ||
-                        userloyeeAddressForm.get('address').get('country').touched)">
-                    <input id="userCountry" type="text" formControlName="country">
-                    <span class="tooltip-content">
-                        Country is required.
-                    </span>
-                </label>
-            </div>
-        </div> -->
-        <button class="btn btn-primary" type="submit">Salveaza</button>
-        <button (click)="goBack()" class="btn">Renunta</button>
-        <!-- <button type="submit" [disabled]="!form.valid">Submit</button>
-        <button (click)="partialUpdate()">Partial Update</button>
-        <button (click)="fullUpdate()">Full Update</button>
-        <button (click)="reset()">Cancel</button> -->
     </section>
 </form>

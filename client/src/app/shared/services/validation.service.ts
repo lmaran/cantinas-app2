@@ -4,9 +4,9 @@
 export class ValidationService {
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
         const config = {
-            required: 'Acest camp este obligatoriu',
-            email: 'Adresa de email invalida',
-            minlength: `Minimum length ${validatorValue.requiredLength}`,
+            required: 'Camp obligatoriu',
+            email: 'Email invalid',
+            minlength: `Minim ${validatorValue.requiredLength} caractere`,
 
             // custom validators
             invalidCreditCard: 'Is invalid credit card number',
