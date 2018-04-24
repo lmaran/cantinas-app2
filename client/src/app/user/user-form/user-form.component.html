@@ -26,8 +26,7 @@
 
         <div class="form-group">
             <label for="userEmail" class="required">Email</label>
-            <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="isFieldInvalid('email')">
-                <!-- <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="userForm.get('email').invalid"> -->
+            <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation" [class.invalid]="isFieldInvalid('email')">
                 <input id="userEmail" type="text" formControlName="email">
                 <span class="tooltip-content">
                     <app-display-error [control]=userForm.controls.email></app-display-error>

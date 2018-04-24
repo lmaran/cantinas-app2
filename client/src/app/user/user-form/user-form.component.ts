@@ -114,7 +114,7 @@ export class UserFormComponent implements OnInit {
 
     ngOnInit() {
         // focus on first field https://stackoverflow.com/a/34573219/2726725
-        // this.renderer2.selectRootElement('#userLastName').focus();
+        this.renderer2.selectRootElement('#userLastName').focus();
 
         // or directly...https://github.com/rogerpadilla/angular2-minimalist-starter/blob/master/src/app/question/question-form.component.ts
         // const id = this.route.snapshot.params['id'];
