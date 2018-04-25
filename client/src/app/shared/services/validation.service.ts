@@ -1,3 +1,6 @@
+import { UserService } from './user.service';
+import { AbstractControl } from '@angular/forms';
+
 // note: this is a static class (no instance), then no need for an instance,
 // so no need for DI, and therefore no need for @injectable
 
@@ -10,12 +13,22 @@ export class ValidationService {
 
             // custom validators
             invalidCreditCard: 'Is invalid credit card number',
-            invalidEmailAddress: 'Adresa de email invalida-2',
             invalidPassword: 'Invalid password. Password must be at least 6 characters long, and contain a number.',
         };
 
         return config[validatorName];
     }
+
+    // async validations:
+    // https://alligator.io/angular/async-validators/
+    // http://fiyazhasan.me/asynchronous-validation-in-angulars-reactive-forms-control/
+    // static createValidator(userService: UserService) {
+    //     return (control: AbstractControl) => {
+    //         return userService.checkEmailNotTaken(control.value).map(res => {
+    //             return res ? null : { emailTaken: true };
+    //         });
+    //     };
+    // }
 
     // static creditCardValidator(control) {
     //     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
