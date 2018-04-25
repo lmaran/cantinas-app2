@@ -1,46 +1,41 @@
-<h1 style="margin:0">Detalii utilizator</h1>
+<h1 style="margin:0">{{title}}</h1>
 
-<form class="form" [formGroup]="employeeAddressForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
+<form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
+
         <div class="form-group">
-            <label for="empFullName">Full name</label>
-            <label for="empFullName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('fullName').invalid
-                    && (employeeAddressForm.get('fullName').dirty || employeeAddressForm.get('fullName').touched)">
-                <input id="empFullName" type="text" formControlName="fullName">
+            <label for="userLastName" class="required">Nume</label>
+            <label for="userLastName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('lastName')">
+                <input id="userLastName" type="text" formControlName="lastName">
                 <span class="tooltip-content">
-                    Name is required.
+                    <app-display-error [control]=userForm.controls.lastName></app-display-error>
                 </span>
             </label>
         </div>
-        <div formGroupName="address">
-            <div class="form-group">
-                <label for="empPostalCode">Postal code</label>
-                <label for="empPostalCode" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('address').get('postalCode').invalid
-                        && (employeeAddressForm.get('address').get('postalCode').dirty ||
-                        employeeAddressForm.get('address').get('postalCode').touched)">
-                    <input id="empPostalCode" type="text" formControlName="postalCode">
-                    <span class="tooltip-content">
-                        Postal code is required.
-                    </span>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="empCountry">Country</label>
-                <label for="empCountry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="employeeAddressForm.get('address').get('country').invalid
-                        && (employeeAddressForm.get('address').get('country').dirty ||
-                        employeeAddressForm.get('address').get('country').touched)">
-                    <input id="empCountry" type="text" formControlName="country">
-                    <span class="tooltip-content">
-                        Country is required.
-                    </span>
-                </label>
-            </div>
+
+        <div class="form-group">
+            <label for="userFirstName" class="required">Prenume</label>
+            <label for="userFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('firstName')">
+                <input id="userFirstName" type="text" formControlName="firstName">
+                <span class="tooltip-content">
+                    <app-display-error [control]=userForm.controls.firstName></app-display-error>
+                </span>
+            </label>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="employeeAddressForm.invalid">Add</button>
-        <!-- <button type="submit" [disabled]="!form.valid">Submit</button>
-        <button (click)="partialUpdate()">Partial Update</button>
-        <button (click)="fullUpdate()">Full Update</button>
-        <button (click)="reset()">Cancel</button> -->
+
+        <div class="form-group">
+            <label for="userEmail" class="required">Email</label>
+            <label for="userEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation" [class.invalid]="isFieldInvalid('email')">
+                <input id="userEmail" type="text" formControlName="email">
+                <span class="tooltip-content">
+                    <app-display-error [control]=userForm.controls.email></app-display-error>
+                </span>
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salveaza</button>
+        <button type="button" (click)="goBack()" class="btn">Renunta</button>
+
     </section>
 </form>

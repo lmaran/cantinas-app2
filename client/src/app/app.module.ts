@@ -13,7 +13,6 @@ import { AuthenticationService } from './authentication.service';
 
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
-import { UserFormComponent } from './user/user-form/user-form.component';
 
 import { UserService } from '../app/shared/services/user.service';
 import { DisplayErrorComponent } from './core/display-error/display-error.component';
@@ -25,7 +24,6 @@ import { DisplayErrorComponent } from './core/display-error/display-error.compon
         HomeComponent,
         UserListComponent,
         UserDetailComponent,
-        UserFormComponent,
         DisplayErrorComponent,
     ],
     imports: [

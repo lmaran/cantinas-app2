@@ -7,8 +7,8 @@
 npm start
 
 # start browser:
-http://localhost:4200 or
-http://dev.appstudio.local:4200
+http://localhost:4201 or
+http://dev.appstudio.local:4201
 
 # test with wallaby.js
 ctrl-shift-R-R (start)
