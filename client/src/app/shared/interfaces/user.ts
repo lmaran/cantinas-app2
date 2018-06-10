@@ -3,7 +3,7 @@ export class User {
     _id: string;
     firstName: string;
     lastName: string;
-    age: number;
+    age?: number;
     complete: boolean;
 
     constructor(values: Object = {}) {

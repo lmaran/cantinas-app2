@@ -38,7 +38,7 @@ export class UserDetailComponent implements OnInit {
         this.userForm = this.formBuilder.group({
             firstName: ['', [Validators.required, Validators.minLength(3)]],
             lastName: ['', [Validators.required, Validators.minLength(2)]],
-            age: '',
+            // age: '',
             email: [null, [Validators.required, Validators.email]],
         });
     }
