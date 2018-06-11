@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../shared/interfaces/user';
 import { UserService } from '../../shared/services/user.service';
+import { AppModalComponent } from '../../shared/components/confirmDelete/confirmDelete.component';
 
 @Component({
     selector: 'app-user-list',
@@ -14,6 +15,9 @@ export class UserListComponent implements OnInit {
     users: User[] = [];
     deleteModal = false;
     selectedUser: User = new User();
+
+    // Don't forget to add this (child) component in the current html
+    @ViewChild(AppModalComponent) modal: AppModalComponent;
 
     constructor(private userService: UserService) {}
 
@@ -40,18 +44,29 @@ export class UserListComponent implements OnInit {
     //     return this.userDataService.getAllUsers();
     // }
 
-    /**
-     * Delete user
-     */
-    confirmDeleteUser(user) {
-        this.deleteModal = true;
-        this.selectedUser = user;
-    }
+    // /**
+    //  * Delete user (met.1)
+    //  */
+    // confirmDeleteUser(user) {
+    //     this.deleteModal = true;
+    //     this.selectedUser = user;
+    // }
 
-    deleteUser(userId) {
-        this.deleteModal = false;
-        this.userService.deleteUserById(userId).subscribe(res => {
-            this.refreshUserList();
+    // met.1
+    // deleteUser(userId) {
+    //     this.deleteModal = false;
+    //     this.userService.deleteUserById(userId).subscribe(res => {
+    //         this.refreshUserList();
+    //     });
+    // }
+
+    // met 2.
+    deleteUser = function(user) {
+        this.modal.open(`${user.firstName} ${user.lastName}`, () => {
+            this.userService.deleteUserById(user._id).subscribe(res => {
+                this.refreshUserList();
+            });
+            // this.modal.show = false;
         });
-    }
+    };
 }

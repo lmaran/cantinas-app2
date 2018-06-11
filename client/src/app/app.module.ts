@@ -17,6 +17,8 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserService } from '../app/shared/services/user.service';
 import { DisplayErrorComponent } from './core/display-error/display-error.component';
 
+import { AppModalComponent } from '../app/shared/components/confirmDelete/confirmDelete.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -25,6 +27,7 @@ import { DisplayErrorComponent } from './core/display-error/display-error.compon
         UserListComponent,
         UserDetailComponent,
         DisplayErrorComponent,
+        AppModalComponent,
     ],
     imports: [
         BrowserAnimationsModule,
