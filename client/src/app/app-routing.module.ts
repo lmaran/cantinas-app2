@@ -5,6 +5,8 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { DishListComponent } from './dish/dish-list/dish-list.component';
+import { DishDetailComponent } from './dish/dish-detail/dish-detail.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +17,10 @@ const routes: Routes = [
     { path: 'users/add', component: UserDetailComponent },
     { path: 'users/:id', component: UserDetailComponent },
     // { path: 'users/:id/edit', component: UserFormComponent },
+
+    { path: 'dishes', component: DishListComponent },
+    { path: 'dishes/add', component: DishDetailComponent },
+    { path: 'dishes/:id', component: DishDetailComponent },
 ];
 
 @NgModule({

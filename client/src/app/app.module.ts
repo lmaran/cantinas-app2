@@ -13,8 +13,11 @@ import { AuthenticationService } from './authentication.service';
 
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { DishListComponent } from './dish/dish-list/dish-list.component';
+import { DishDetailComponent } from './dish/dish-detail/dish-detail.component';
 
 import { UserService } from '../app/shared/services/user.service';
+import { DishService } from '../app/shared/services/dish.service';
 import { DisplayErrorComponent } from './core/display-error/display-error.component';
 
 import { AppModalComponent } from '../app/shared/components/confirmDelete/confirmDelete.component';
@@ -26,6 +29,8 @@ import { AppModalComponent } from '../app/shared/components/confirmDelete/confir
         HomeComponent,
         UserListComponent,
         UserDetailComponent,
+        DishListComponent,
+        DishDetailComponent,
         DisplayErrorComponent,
         AppModalComponent,
     ],
@@ -37,7 +42,7 @@ import { AppModalComponent } from '../app/shared/components/confirmDelete/confir
         ReactiveFormsModule,
         HttpClientModule,
     ],
-    providers: [AuthenticationService, UserService],
+    providers: [AuthenticationService, UserService, DishService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
