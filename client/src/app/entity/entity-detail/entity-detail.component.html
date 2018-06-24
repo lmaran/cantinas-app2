@@ -1,0 +1,58 @@
+<h1 style="margin:0">{{title}}</h1>
+
+<form class="form" [formGroup]="entiyForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
+    <section class="form-block">
+        <!-- <label>Add Employee Address</label> -->
+
+        <div class="form-group">
+            <label for="entiyName" class="required">Nume</label>
+            <label for="entiyName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('name')">
+                <input id="entiyName" type="text" formControlName="name" size="45">
+                <span class="tooltip-content">
+                    <app-display-error [control]=entiyForm.controls.name></app-display-error>
+                </span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="entiyCategory" class="required">Categorie</label>
+            <label for="entiyCategory" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('category')">
+                <div class="select">
+                    <select id="entiyCategory" name="entiyCategory" formControlName="category">
+                        <option *ngFor="let category of categoryList" [value]="category.value">{{category.label}}</option>
+                    </select>
+                    <span class="tooltip-content">
+                        <app-display-error [control]=entiyForm.controls.category></app-display-error>
+                    </span>
+                </div>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="entiyCalories">Calorii</label>
+            <label for="entiyCalories" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation" [class.invalid]="isFieldInvalid('calories')">
+                <input id="entiyCalories" type="text" formControlName="calories" size="7">
+                <span class="tooltip-content">
+                    <app-display-error [control]=entiyForm.controls.calories></app-display-error>
+                </span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="entiyDescription">Descriere</label>
+            <textarea id="entiyDescription" rows="2" formControlName="description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="entiyIsFasting"></label>
+
+            <clr-checkbox name="termsCheckbox" id="entiyIsFasting" formControlName="isFasting">
+                De Post
+            </clr-checkbox>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salveaza</button>
+        <button type="button" (click)="goBack()" class="btn">Renunta</button>
+
+    </section>
+</form>

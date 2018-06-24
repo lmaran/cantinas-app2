@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 // import { Http, Response } from '@angular/http';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Dish } from '../interfaces/dish';
+import { Entity } from '../interfaces/entity';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -12,76 +12,77 @@ import 'rxjs/add/operator/do'; // for debugging
 const API_URL = environment.apiUrl;
 
 @Injectable()
-export class DishService {
+export class EntityService {
     constructor(private http: HttpClient) {}
 
-    public getAllDishes(): Observable<Dish[]> {
+    public getAllEntities(): Observable<Entity[]> {
         return (
             this.http
-                // .get(API_URL + '/dishes')
-                .get<Dish[]>('app/api/v1/dishes')
+                // .get(API_URL + '/entities')
+                .get<Entity[]>('app/api/v1/entities')
                 // .map(response => {
-                //     const dishes = response.json();
-                //     return dishes.map(dish => new Dish(dish));
+                //     const entities = response.json();
+                //     return entities.map(entity => new Entity(entity));
                 // })
                 // .do(data => console.log('server data:', data)) // debug
                 .catch(this.handleError)
         );
     }
 
-    public getDishById(dishId: string): Observable<Dish> {
+    public getEntityById(entityId: string): Observable<Entity> {
         return (
             this.http
-                // .get(API_URL + '/dishes/' + dishId)
-                .get<Dish>(`app/api/v1/dishes/${dishId}`)
+                // .get(API_URL + '/entities/' + entityId)
+                .get<Entity>(`app/api/v1/entities/${entityId}`)
                 //   .map(response => {
-                //     return new Dish(response.json());
+                //     return new Entity(response.json());
                 //   })
                 // .do(data => console.log('server data:', data)) // debug
                 .catch(this.handleError)
         );
     }
 
-    public createDish(dish: Dish): Observable<Dish> {
+    public createEntity(entity: Entity): Observable<Entity> {
         return (
             this.http
-                // .post(API_URL + '/dishes', dish)
-                .post<Dish>('app/api/v1/dishes', dish)
+                // .post(API_URL + '/entities', entity)
+                .post<Entity>('app/api/v1/entities', entity)
                 //   .map(response => {
-                //     return new Dish(response.json());
+                //     return new Entity(response.json());
                 //   })
                 .catch(this.handleError)
         );
     }
 
-    public updateDish(dish: Dish): Observable<Dish> {
+    public updateEntity(entity: Entity): Observable<Entity> {
         return (
             this.http
-                // .put(API_URL + '/dishes/' + dish.id, dish)
-                .put<Dish>(`app/api/v1/dishes`, dish)
+                // .put(API_URL + '/entities/' + entity.id, entity)
+                .put<Entity>(`app/api/v1/entities`, entity)
                 //   .map(response => {
-                //     return new Dish(response.json());
+                //     return new Entity(response.json());
                 //   })
                 .catch(this.handleError)
         );
     }
 
-    // public deleteDishById(dishId: string): Observable<HttpResponse<number>> {
-    //     console.log(dishId);
+    // public deleteEntityById(entityId: string): Observable<HttpResponse<number>> {
+    //     console.log(entityId);
     //     return (
     //         this.http
-    //             // .delete(API_URL + '/dishes/' + dishId)
-    //             .delete(`app/api/v1/dishes/${dishId}`)
+    //             // .delete(API_URL + '/entities/' + entityId)
+    //             .delete(`app/api/v1/entities/${entityId}`)
     //             .map((response: HttpResponse<number>) => response.status)
     //             .catch(this.handleError)
     //     );
     // }
 
-    public deleteDishById(dishId: string): Observable<{}> {
-        const uri = `app/api/v1/dishes/${dishId}`;
+    // public deleteEntityById(entityId: string): Observable<HttpResponse<number>> {
+    public deleteEntityById(entityId: string): Observable<{}> {
+        const uri = `app/api/v1/entities/${entityId}`;
         return (
             this.http
-                // .delete(API_URL + '/dishes/' + dishId)
+                // .delete(API_URL + '/entities/' + entityId)
                 // tell HttpClient that we want the full response https://stackoverflow.com/a/46809000/2726725
                 .delete(uri, { observe: 'response' })
                 .map((response: HttpResponse<number>) => response.status)

@@ -19,7 +19,7 @@ export class UserService {
         return (
             this.http
                 // .get(API_URL + '/users')
-                .get('app/api/v1/users')
+                .get<User[]>('app/api/v1/users')
                 // .map(response => {
                 //     const users = response.json();
                 //     return users.map(user => new User(user));
@@ -33,7 +33,7 @@ export class UserService {
         return (
             this.http
                 // .get(API_URL + '/users/' + userId)
-                .get(`app/api/v1/users/${userId}`)
+                .get<User>(`app/api/v1/users/${userId}`)
                 //   .map(response => {
                 //     return new User(response.json());
                 //   })
@@ -46,7 +46,7 @@ export class UserService {
         return (
             this.http
                 // .post(API_URL + '/users', user)
-                .post('app/api/v1/users', user)
+                .post<User>('app/api/v1/users', user)
                 //   .map(response => {
                 //     return new User(response.json());
                 //   })
@@ -58,7 +58,7 @@ export class UserService {
         return (
             this.http
                 // .put(API_URL + '/users/' + user.id, user)
-                .put(`app/api/v1/users`, user)
+                .put<User>(`app/api/v1/users`, user)
                 //   .map(response => {
                 //     return new User(response.json());
                 //   })
@@ -77,7 +77,7 @@ export class UserService {
     //     );
     // }
 
-    public deleteUserById(userId: string): Observable<HttpResponse<number>> {
+    public deleteUserById(userId: string): Observable<{}> {
         const uri = `app/api/v1/users/${userId}`;
         return (
             this.http
