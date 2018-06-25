@@ -69,13 +69,14 @@
             </a>
 
             <clr-vertical-nav-group routerLinkActive="active">
+                <a routerLink="./admin" hidden aria-hidden="true"></a>
                 <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
                 Admin
                 <clr-vertical-nav-group-children>
                     <a clrVerticalNavLink routerLink="./home2" routerLinkActive="active">
                         Users
                     </a>
-                    <a clrVerticalNavLink routerLink="./entities" routerLinkActive="active">
+                    <a clrVerticalNavLink routerLink="./admin/entities" routerLinkActive="active">
                         Entities
                     </a>
                     <a clrVerticalNavLink routerLink="./about2" routerLinkActive="active">

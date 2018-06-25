@@ -18,9 +18,6 @@ import { DishDetailComponent } from './dish/dish-detail/dish-detail.component';
 import { EntityListComponent } from './entity/entity-list/entity-list.component';
 import { EntityDetailComponent } from './entity/entity-detail/entity-detail.component';
 
-import { UserService } from '../app/shared/services/user.service';
-import { DishService } from '../app/shared/services/dish.service';
-import { EntityService } from '../app/shared/services/entity.service';
 import { DisplayErrorComponent } from './core/display-error/display-error.component';
 
 import { AppModalComponent } from '../app/shared/components/confirmDelete/confirmDelete.component';
@@ -47,7 +44,7 @@ import { AppModalComponent } from '../app/shared/components/confirmDelete/confir
         ReactiveFormsModule,
         HttpClientModule,
     ],
-    providers: [AuthenticationService, UserService, DishService, EntityService],
+    providers: [AuthenticationService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

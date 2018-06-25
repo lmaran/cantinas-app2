@@ -11,7 +11,9 @@ import 'rxjs/add/operator/do'; // for debugging
 
 const API_URL = environment.apiUrl;
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class DishService {
     constructor(private http: HttpClient) {}
 
