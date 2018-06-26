@@ -52,7 +52,8 @@
             <router-outlet></router-outlet>
         </div>
 
-        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed" [clr-nav-level]="2" class="nav-trigger--bottom">
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="verticalNavIsCollapsed" [clr-nav-level]="2"
+            class="nav-trigger--bottom">
 
             <a clrVerticalNavLink routerLink="./home" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="sad-face"></clr-icon>
@@ -68,8 +69,8 @@
                 Feluri de mancare
             </a>
 
-            <clr-vertical-nav-group routerLinkActive="active">
-                <a routerLink="./admin" hidden aria-hidden="true"></a>
+            <clr-vertical-nav-group routerLinkActive="active" [clrVerticalNavGroupExpanded]="navGroupAdminIsExpanded">
+                <!-- <a routerLink="./admin" hidden aria-hidden="true"></a> -->
                 <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
                 Admin
                 <clr-vertical-nav-group-children>

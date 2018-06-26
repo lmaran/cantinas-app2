@@ -7,5 +7,7 @@ import { AuthenticationService } from './authentication.service';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+    verticalNavIsCollapsed = false;
+    navGroupAdminIsExpanded = true;
     constructor(public auth: AuthenticationService) {}
 }
