@@ -19,8 +19,7 @@ export class EntityListComponent implements OnInit {
     title: string;
     categoryList: any;
 
-    validateBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
-    submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
+    refreshBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
     // Don't forget to add this (child) component in the current html
     @ViewChild(AppModalComponent) modal: AppModalComponent;
@@ -41,23 +40,15 @@ export class EntityListComponent implements OnInit {
         ];
 
         this.title = 'Entitati';
-        this.refreshEntityList();
-    }
-
-    validateDemo() {
-        this.validateBtnState = ClrLoadingState.LOADING;
-        // Validating Logic
-        this.validateBtnState = ClrLoadingState.SUCCESS;
-    }
-
-    submitDemo() {
-        this.submitBtnState = ClrLoadingState.LOADING;
-        // Submit Logic
-        // this.submitBtnState = ClrLoadingState.DEFAULT;
-        this.submitBtnState = ClrLoadingState.SUCCESS;
+        this.getEntityList();
     }
 
     refreshEntityList() {
+        this.refreshBtnState = ClrLoadingState.LOADING;
+        this.getEntityList();
+    }
+
+    getEntityList() {
         this.entityService.getAllEntities().subscribe(entities => {
             // this.entities = entities;
             this.entities = entities.map(x => {
@@ -67,6 +58,10 @@ export class EntityListComponent implements OnInit {
                 }
                 return x;
             });
+
+            if (this.refreshBtnState === ClrLoadingState.LOADING) {
+                this.refreshBtnState = ClrLoadingState.SUCCESS;
+            }
         });
     }
 

@@ -5,15 +5,10 @@
     Adauga entitate
 </button>
 
-<button class="btn">
-    <span class="spinner spinner-inline">
-        Loading...
-    </span>
+<button type="button" [clrLoading]="refreshBtnState" class="btn btn-icon" (click)="refreshEntityList()">
+    <clr-icon shape="refresh"></clr-icon>
     Refresh
 </button>
-
-<button [clrLoading]="validateBtnState" class="btn btn-info-outline" (click)="validateDemo()">Validate</button>
-<button [clrLoading]="submitBtnState" type2="submit" class="btn btn-success-outline" (click)="submitDemo()">Submit</button>
 
 <table class="table">
     <thead>
