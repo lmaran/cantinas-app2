@@ -1,33 +1,89 @@
-<h1 style="margin:0">{{title}}</h1>
+<h1 style="margin:0">
+
+    {{title}}</h1>
+
+<div class="alert alert-danger" *ngIf="!entityForm.valid && formSubmitAttempt">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                Formular invalid. Corecteaza informatiile din campurile marcate.
+            </span>
+        </div>
+    </div>
+</div>
 
 <form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
     <section class="form-block">
         <!-- <label>Add Employee Address</label> -->
 
-        <div class="form-group">
-            <label for="entityName" class="required">Nume</label>
+        <div class="form-group row">
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="entityName" class="required">Nume afisat:</label>
+            </div>
 
-            <label for="entityName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('name')">
-                <input id="entityName" type="text" formControlName="name">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <input id="entityName" type="text" class="form-control" formControlName="name" [class.lm-invalid]="isFieldInvalid('name')">
 
-                <span class="tooltip-content ">
-                    <app-display-error [control]=entityForm.controls.name></app-display-error>
-                </span>
-            </label>
+                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
+                    Numele entitatii, la singular. Ex: Materie prima, Produs etc
+                </div>
+                <!-- <div style2="color:red; font-style: italic; line-height: 0.7rem;">
+                    Camp obligatoriu.
+                </div> -->
+
+                <app-display-error *ngIf="isFieldInvalid('name')" [control]=entityForm.controls.name></app-display-error>
+            </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="entityPluralName" class="required">Nume la plural:</label>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <input id="entityPluralName" type="text" class="form-control" formControlName="pluralName" [class.lm-invalid]="isFieldInvalid('pluralName')">
+                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
+                    Ex: Materii Prime, Produse etc
+                </div>
+                <app-display-error *ngIf="isFieldInvalid('pluralName')" [control]=entityForm.controls.pluralName></app-display-error>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="entityUniqueName" class="required">Nume unic:</label>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <input id="entityUniqueName" type="text" class="form-control" formControlName="uniqueName" [class.lm-invalid]="isFieldInvalid('uniqueName')">
+                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
+                    Nume unic, nemodificabil, folosit ca referinta in DB (slug). Ex: materie-prima, produs etc
+                </div>
+                <app-display-error *ngIf="isFieldInvalid('uniqueName')" [control]=entityForm.controls.uniqueName></app-display-error>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="entityDescription">Descriere:</label>
+            </div>
+            <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+                <textarea id="entityDescription" rows="3" class="form-control" style2="margin-bottom: 0"></textarea>
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
             <label for="entityCategory" class="required">Categorie</label>
-            <!-- <label for="entityCategory" aria-haspopup="true" role="tooltip" class="tooltip tooltip-md tooltip-validation " [class.invalid]="isFieldInvalid('category')"> -->
+
             <div class="select">
                 <select id="entityCategory" name="entityCategory" formControlName="category">
                     <option *ngFor="let category of categoryList" [value]="category.value">{{category.label}}</option>
                 </select>
             </div>
-            <!-- </label> -->
-
-
-        </div>
+        </div> -->
 
         <!-- <div class="form-group ">
                 <label for="entityCalories ">Calorii</label>
@@ -53,13 +109,19 @@
                 </clr-checkbox>
             </div> -->
 
+
+
         <button type="submit " class="btn btn-primary ">Salveaza</button>
         <button type="button " (click)="goBack() " class="btn ">Renunta</button>
+
+
 
     </section>
 </form>
 
-<form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
+
+
+<!-- <form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
     <section class="form-block">
         <label>Form Inside a Grid</label>
 
@@ -90,9 +152,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <input class="form-control" type="text" id="gForm_1" size2="45">
-                <!-- <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 01
-                </div> -->
+
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <input class="form-control" type="password" id="gForm_2" size2="35">
@@ -139,12 +199,6 @@
             </div>
         </div>
 
-        <!-- <div class="form-group row">
-            <div class="offset-lg-2 col-lg-10 col-md-12 col-sm-12 col-xs-12" style="color:gray; font-style: italic; line-height: 0.4rem;">
-                Enter another value here 2
-            </div>
-        </div> -->
-
         <div class="form-group row" style2="margin-bottom:0">
             <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                 <label for="gForm_4">Text area</label>
@@ -156,12 +210,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="form-group row">
-            <div class="offset-lg-2 col-lg-10 col-md-12 col-sm-12 col-xs-12" style="color:gray; font-style: italic; line-height: 0.4rem;">
-                Enter another value here 3
-            </div>
-        </div> -->
 
         <div class="form-group row">
             <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
@@ -201,4 +249,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Button</button>
     </section>
-</form>
+</form> -->

@@ -45,10 +45,10 @@ export class EntityDetailComponent implements OnInit {
     createForm() {
         this.entityForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
+            pluralName: ['', [Validators.required, Validators.minLength(3)]],
+            uniqueName: ['', [Validators.required, Validators.minLength(3)]],
+
             description: [''],
-            category: '',
-            calories: '',
-            isFasting: false,
         });
     }
 
@@ -139,20 +139,18 @@ export class EntityDetailComponent implements OnInit {
             const id = params['id'];
             if (id) {
                 this.isEditMode = true;
-                this.title = 'Editeaza felul de mancare';
+                this.title = 'Editeaza entitate';
 
                 this.entityService.getEntityById(id.toString()).subscribe((entity: any) => {
                     this.entity = entity;
                     this.entityForm.reset({
                         name: entity.name,
-                        category: entity.category,
-                        calories: entity.calories,
-                        description: entity.description,
-                        isFasting: entity.isFasting,
+                        pluralname: entity.pluralName,
+                        uniqueName: entity.uniqueName,
                     });
                 });
             } else {
-                this.title = 'Adauga fel de mancare';
+                this.title = 'Adauga entitate';
             }
         });
     }

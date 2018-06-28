@@ -1,0 +1,10 @@
+input.lm-invalid,
+input[type='text']:not([readonly]):focus.lm-invalid {
+    border-bottom: 1px solid #c92100;
+    background: linear-gradient(to bottom, transparent 95%, #c92100 95%);
+    transition: none;
+    ~ app-display-error {
+        _display: block;
+        color: #c92100;
+    }
+}
