@@ -1,19 +1,12 @@
-<h1 style="margin:0">
-
-    {{title}}</h1>
-
-<div class="alert alert-danger" *ngIf="!entityForm.valid && formSubmitAttempt">
-    <div class="alert-items">
-        <div class="alert-item static">
-            <div class="alert-icon-wrapper">
-                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
-            </div>
-            <span class="alert-text">
-                Formular invalid. Corecteaza informatiile din campurile marcate.
-            </span>
-        </div>
+<clr-alert [clrAlertType]="'alert-danger'" [clrAlertClosable]="false" *ngIf="!entityForm.valid && formSubmitAttempt">
+    <div class="alert-item">
+        <span class="alert-text">
+            Formular invalid. Corecteaza informatiile din campurile marcate.
+        </span>
     </div>
-</div>
+</clr-alert>
+
+<h1 style="margin:0">{{title}}</h1>
 
 <form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
     <section class="form-block">
