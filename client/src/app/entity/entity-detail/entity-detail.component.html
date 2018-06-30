@@ -6,7 +6,7 @@
     </div>
 </clr-alert>
 
-<h1 style="margin:0">{{title}}</h1>
+<h1>{{title}}</h1>
 
 <form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
     <section class="form-block">
@@ -18,16 +18,11 @@
             </div>
 
             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <input id="entityName" type="text" class="form-control" formControlName="name" [class.lm-invalid]="isFieldInvalid('name')">
-
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
+                <input id="entityName" type="text" class="form-control" formControlName="displayName" [class.lm-invalid]="isFieldInvalid('displayName')">
+                <div class="lm-hint-notes">
                     Numele entitatii, la singular. Ex: Materie prima, Produs etc
                 </div>
-                <!-- <div style2="color:red; font-style: italic; line-height: 0.7rem;">
-                    Camp obligatoriu.
-                </div> -->
-
-                <app-display-error *ngIf="isFieldInvalid('name')" [control]=entityForm.controls.name></app-display-error>
+                <app-display-error *ngIf="isFieldInvalid('displayName')" [control]=entityForm.controls.displayName></app-display-error>
             </div>
         </div>
 
@@ -38,7 +33,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                 <input id="entityPluralName" type="text" class="form-control" formControlName="pluralName" [class.lm-invalid]="isFieldInvalid('pluralName')">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
+                <div class="lm-hint-notes">
                     Ex: Materii Prime, Produse etc
                 </div>
                 <app-display-error *ngIf="isFieldInvalid('pluralName')" [control]=entityForm.controls.pluralName></app-display-error>
@@ -52,7 +47,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                 <input id="entityUniqueName" type="text" class="form-control" formControlName="uniqueName" [class.lm-invalid]="isFieldInvalid('uniqueName')">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
+                <div class="lm-hint-notes">
                     Nume unic, nemodificabil, folosit ca referinta in DB (slug). Ex: materie-prima, produs etc
                 </div>
                 <app-display-error *ngIf="isFieldInvalid('uniqueName')" [control]=entityForm.controls.uniqueName></app-display-error>
@@ -64,182 +59,16 @@
                 <label for="entityDescription">Descriere:</label>
             </div>
             <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-                <textarea id="entityDescription" rows="3" class="form-control" style2="margin-bottom: 0"></textarea>
+                <textarea id="entityDescription" rows="3" class="form-control" formControlName="description" [class.lm-invalid]="isFieldInvalid('description')"></textarea>
+                <div class="lm-hint-notes">
+                    Nume unic, nemodificabil, folosit ca referinta in DB (slug). Ex: materie-prima, produs etc
+                </div>
+                <app-display-error *ngIf="isFieldInvalid('description')" [control]=entityForm.controls.description></app-display-error>
             </div>
         </div>
-
-        <!-- <div class="form-group">
-            <label for="entityCategory" class="required">Categorie</label>
-
-            <div class="select">
-                <select id="entityCategory" name="entityCategory" formControlName="category">
-                    <option *ngFor="let category of categoryList" [value]="category.value">{{category.label}}</option>
-                </select>
-            </div>
-        </div> -->
-
-        <!-- <div class="form-group ">
-                <label for="entityCalories ">Calorii</label>
-                <label for="entityCalories " aria-haspopup="true " role="tooltip " class="tooltip tooltip-md tooltip-validation
-                    " [class.invalid]="isFieldInvalid( 'calories') ">
-                    <input id="entityCalories " type="text " formControlName="calories " size="7 ">
-                    <span class="tooltip-content ">
-                        <app-display-error [control]=entityForm.controls.calories></app-display-error>
-                    </span>
-                </label>
-            </div>
-    
-            <div class="form-group ">
-                <label for="entityDescription ">Descriere</label>
-                <textarea id="entityDescription " rows="2 " formControlName="description "></textarea>
-            </div>
-    
-            <div class="form-group ">
-                <label for="entityIsFasting "></label>
-    
-                <clr-checkbox name="termsCheckbox " id="entityIsFasting " formControlName="isFasting ">
-                    De Post
-                </clr-checkbox>
-            </div> -->
-
-
 
         <button type="submit " class="btn btn-primary ">Salveaza</button>
         <button type="button " (click)="goBack() " class="btn ">Renunta</button>
 
-
-
     </section>
 </form>
-
-
-
-<!-- <form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" [hidden]="submitted" novalidate>
-    <section class="form-block">
-        <label>Form Inside a Grid</label>
-
-        <div class="form-group row" style2="margin-bottom:0">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1" class="required">Input field</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" id="gForm_1" size2="45">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 01
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1" class="required">Input field</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="password" id="gForm_2" size2="35">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 02, enter another value, Enter another value here 02, enter another value here
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row" style2="margin-bottom:0">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1" class="required">Input field</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" id="gForm_1" size2="45">
-
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="password" id="gForm_2" size2="35">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 02
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row" style2="margin-bottom:0">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1" class="required">Input field</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" id="gForm_1" size2="45">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 01
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="password" id="gForm_2" size2="35">
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 02
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row" style2="margin-bottom:0">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_3">Select box</label>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
-                <div class="select form-control">
-                    <select id="gForm_3">
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                    </select>
-                </div>
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 03
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row" style2="margin-bottom:0">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_4">Text area</label>
-            </div>
-            <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-                <textarea id="gForm_4" rows="3" class="form-control" style="margin-bottom: 0"></textarea>
-                <div style="color:gray; font-style: italic; line-height: 0.5rem;">
-                    Enter another value here 03
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label>Another select box</label>
-            </div>
-            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-                <div class="select form-control">
-                    <select id="exampleSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12">
-                <span>Sockets: 1</span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_3">Other form fields</label>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-                <div class="toggle-switch">
-                    <input type="checkbox" id="othertoggle">
-                    <label for="othertoggle">Toggle</label>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="checkbox-inline">
-                    <input type="checkbox" id="othercheckbox" checked>
-                    <label for="othercheckbox">Inline Checkbox</label>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Button</button>
-    </section>
-</form> -->

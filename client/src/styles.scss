@@ -1,13 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* style invalid controls */
-input.lm-invalid,
-input[type='text']:not([readonly]):focus.lm-invalid {
-    border-bottom: 1px solid #c92100;
-    background: linear-gradient(to bottom, transparent 95%, #c92100 95%);
-    transition: none;
-    /* first sibling */
-    ~ app-display-error {
-        color: #c92100;
+.main-container {
+    .content-container {
+        .content-area {
+            padding-top: 0;
+        }
     }
+}
+
+/* style invalid controls */
+input[type='text'].lm-invalid {
+    border-bottom: 1px solid #c92100;
+    &:not([readonly]):focus {
+        background: none;
+        border-bottom: 2px solid #c92100;
+    }
+}
+
+textarea.lm-invalid {
+    border: 1px solid #c92100;
+    &:not([readonly]):focus {
+        box-shadow: 0 0 1px 1px #c92100;
+    }
+}
+
+.form .form-group textarea {
+    margin-bottom: 0;
+}
+
+app-display-error {
+    color: #c92100;
+}
+
+.lm-hint-notes {
+    color: gray;
+    font-style: italic;
+    line-height: 0.5rem;
 }

@@ -1,4 +1,4 @@
-<h1 style="margin:0">{{title}}</h1>
+<h1>{{title}}</h1>
 
 <button class="btn btn-primary" [routerLink]="['/entities/add']">
     <clr-icon shape="plus"></clr-icon>
@@ -14,10 +14,9 @@
     <thead>
         <tr>
             <th></th>
-            <th class="left">Nume</th>
-            <th class="left">Categorie</th>
-            <th>DePost</th>
-            <th>Calorii</th>
+            <th class="left">Nume afisat</th>
+            <th class="left">Numa la plural</th>
+            <th class="left">Numa unic</th>
             <th class="left">Descriere</th>
             <th></th>
         </tr>
@@ -30,13 +29,10 @@
                 </a>
             </td>
             <td class="left">
-                <a href="#" [routerLink]="['/entities', entity._id]">{{entity.name}}</a>
+                <a href="#" [routerLink]="['/entities', entity._id]">{{entity.displayName}}</a>
             </td>
-            <td class="left">{{entity.category}}</td>
-            <td>
-                <clr-icon [attr.shape]="entity.isFasting ? 'check' : 'minus'" [style.color]="entity.isFasting ? '#0077b7' : 'lightgray' "></clr-icon>
-            </td>
-            <td style="text-align: right">{{entity.calories}}</td>
+            <td class="left">{{entity.pluralName}}</td>
+            <td class="left">{{entity.uniqueName}}</td>
             <td class="left">{{entity.description}}</td>
             <td>
                 <button style="margin-top:0; margin-bottom:1px; padding:0; line-height: 0; height: 0.4rem; border:0;" class="btn btn-sm btn-link"

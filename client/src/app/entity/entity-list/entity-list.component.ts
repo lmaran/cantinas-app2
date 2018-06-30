@@ -91,7 +91,7 @@ export class EntityListComponent implements OnInit {
 
     // met 2.
     deleteEntity = function(entity) {
-        this.modal.open(`${entity.firstName} ${entity.lastName}`, () => {
+        this.modal.open(`${entity.displayName}`, () => {
             this.entityService.deleteEntityById(entity._id).subscribe(res => {
                 this.refreshEntityList();
             });

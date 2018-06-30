@@ -44,11 +44,11 @@ export class EntityDetailComponent implements OnInit {
 
     createForm() {
         this.entityForm = this.formBuilder.group({
-            name: ['', [Validators.required, Validators.minLength(3)]],
+            displayName: ['', [Validators.required, Validators.minLength(3)]],
             pluralName: ['', [Validators.required, Validators.minLength(3)]],
             uniqueName: ['', [Validators.required, Validators.minLength(3)]],
 
-            description: [''],
+            description: ['', [Validators.required]],
         });
     }
 
@@ -106,7 +106,7 @@ export class EntityDetailComponent implements OnInit {
             });
         } else {
             this.entityService.createEntity(entity).subscribe(saved => {
-                this.router.navigate(['/entities']);
+                // this.router.navigate(['/entities']);
             });
         }
     }
@@ -144,9 +144,10 @@ export class EntityDetailComponent implements OnInit {
                 this.entityService.getEntityById(id.toString()).subscribe((entity: any) => {
                     this.entity = entity;
                     this.entityForm.reset({
-                        name: entity.name,
-                        pluralname: entity.pluralName,
+                        displayName: entity.displayName,
+                        pluralName: entity.pluralName,
                         uniqueName: entity.uniqueName,
+                        description: entity.description,
                     });
                 });
             } else {
