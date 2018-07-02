@@ -48,8 +48,8 @@
     </clr-header>
 
     <div class="content-container">
-        <div class="content-area">
-            <router-outlet></router-outlet>
+        <div class="content-area" [@routerTransition]="getState(o)" style2="background-color: green">
+            <router-outlet #o="outlet"></router-outlet>
         </div>
 
         <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="verticalNavIsCollapsed" [clr-nav-level]="2"

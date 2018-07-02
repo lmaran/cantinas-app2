@@ -12,8 +12,8 @@ import { EntityDetailComponent } from './entity/entity-detail/entity-detail.comp
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
+    { path: 'home', component: HomeComponent, data: { state: 'home' } },
+    { path: 'about', component: AboutComponent, data: { state: 'about' } },
 
     { path: 'users', component: UserListComponent },
     { path: 'users/add', component: UserDetailComponent },
@@ -27,6 +27,8 @@ const routes: Routes = [
     { path: 'entities', component: EntityListComponent },
     { path: 'entities/add', component: EntityDetailComponent },
     { path: 'entities/:id', component: EntityDetailComponent },
+
+    // { path: '**', component: NotFound }
 ];
 
 @NgModule({
